@@ -10,3 +10,22 @@ class Fan:
         self.__radius = float(radius)
         self.__color = color
         self.__on = on
+        
+        @property # getter
+        def get_speed(self):
+            return self.__speed
+        
+        def get_radius(self):
+            return self.__radius
+        
+        def get_color(self): 
+            return self.__color
+        
+        def status_on(self):
+            return self.__on
+        
+        @speed.setter
+        def set_speed(self, speed): 
+            self.__speed = speed
+        
+        
