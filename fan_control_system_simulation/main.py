@@ -3,6 +3,16 @@
 import tkinter as tk
 from fan_remote_gui import FanRemoteGUI
 
+def main():
+    root = tk.Tk()
+    remote = FanRemoteGUI(root)
+    
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+    
+
 # Program Plan
 
 # INSTRUCTIONS (Base Program)
