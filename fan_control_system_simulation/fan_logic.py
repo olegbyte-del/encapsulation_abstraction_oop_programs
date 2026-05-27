@@ -15,17 +15,31 @@ class Fan:
         def get_speed(self):
             return self.__speed
         
-        def get_radius(self):
-            return self.__radius
-        
-        def get_color(self): 
-            return self.__color
-        
-        def status_on(self):
-            return self.__on
-        
         @speed.setter
         def set_speed(self, speed): 
             self.__speed = speed
         
+        @property
+        def get_radius(self):
+            return self.__radius
         
+        @radius.setter
+        def set_radius(self, radius): 
+            self.__radius = radius
+        
+        @property
+        def get_color(self): 
+            return self.__color
+
+        @color.setter
+        def set_color(self, color): 
+            self.__color = color
+        
+        @property
+        def status_on(self):
+            return self.__on
+        
+        @on.setter
+        def set_status_on(self, on):
+            self.__on = on
+            
