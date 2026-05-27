@@ -1,5 +1,8 @@
 # Main Program
 
+import tkinter as tk
+from fan_remote_gui import FanRemoteGUI
+
 # Program Plan
 
 # INSTRUCTIONS (Base Program)
