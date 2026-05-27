@@ -13,3 +13,6 @@ class FanRemoteGUI:
         self.fan = Fan()
         
         self.screen_var = tk.StringVar()
+        
+        self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\fan_control_system_simulation\remote.png")
+        self.root.iconphoto(False, self.logo_img)
