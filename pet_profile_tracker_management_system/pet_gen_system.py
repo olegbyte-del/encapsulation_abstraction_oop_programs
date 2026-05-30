@@ -54,7 +54,14 @@ class PetAppGui:
             pass
         
         def upload_image(self):
-            pass
+            file_types = [("Image files", "*.jpg *.jpeg *.png *.bmp")]
+            path = filedialog.askopenfilename(title="Select Photo", filetypes=file_types)
+        
+            if path:
+                self.image_path = path
+                self.upload_button.config(
+                    text="✅ Photo Attached", bg="#e7f3ff", fg="#ffffff"
+                )
         
         def create_id_card_frame(self):
             pass
