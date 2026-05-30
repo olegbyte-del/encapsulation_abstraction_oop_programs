@@ -1,5 +1,8 @@
 # Main Program
 
+import tkinter as tk
+from pet_gen_system import PetAppGui
+
 # REQUIRED INSTRUCTIONS (Base Program)
 # Create a Pet class with private attributes:
 # __name
@@ -31,3 +34,12 @@
 # displays uploaded image
 # assigns a generated ID (example: PET-001)
 # Output becomes a “pet profile generator” instead of just console input/output
+
+def main():
+    root = tk.Tk()
+    app = PetAppGui(root)
+    
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
