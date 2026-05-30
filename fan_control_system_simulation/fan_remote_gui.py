@@ -20,7 +20,7 @@ class FanRemoteGUI:
         self.fan = Fan()
         
         # initialize video_engine
-        self.gif_player = GIFPlayer(self.screen, self.root)
+        self.gif_player = GIFPlayer(self.root)
         
         # Screen Display
         self.screen_var = tk.StringVar(value="Fan off")
@@ -71,7 +71,6 @@ class FanRemoteGUI:
         self.screen_var.set("Fan off")
         
         self.gif_player.load_gif(self.gif_player.paths["off"])
-        self.gif_player.idx = 0
         self.gif_player.loop()
             
     # Dynamic Fan Control
@@ -82,6 +81,7 @@ class FanRemoteGUI:
         labels = {1: "LOW", 2: "MEDIUM", 3: "HIGH"}
         self.screen_var.set(f"SPEED: {labels[speed]}")
         
-            
+        path = self.gif_player.paths[speed]
+        self.gif_player.load_gif(path)
         
         

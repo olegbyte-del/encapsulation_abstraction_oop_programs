@@ -21,6 +21,10 @@ class GIFPlayer:
         self.idx = 0
         self.job = None
         
+        # Icon logo for the video
+        self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\fan_control_system_simulation\remote.png")
+        self.root.iconphoto(False, self.logo_img)
+        
         # setting exact paths for gif files
         base = r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\fan_control_system_simulation\\"
         self.paths = {
@@ -32,9 +36,14 @@ class GIFPlayer:
     
     def load_gif(self, path): 
         """ Extract all individual from the specified GIF file path"""
-        
+
+        if self.job:
+            self.root.after_cancel(self.job)
+            self.job = None
+            
         self.frames = []
         file_index = 0
+        self.idx = 0
         
         while True:
             try:
@@ -43,10 +52,15 @@ class GIFPlayer:
                 file_index += 1
             except:
                 break
-            
+        
+        self.label.imgs = self.frames
+        
     def loop(self):
         """Cycle through the GIF continously"""
+        if not self.frames:
+            return
+        
         # loops the current gif that were selected
         self.label.config(image=self.frames[self.idx])
         self.idx = (self.idx + 1) % len(self.frames)
-        self.job = self.root.after(50, self. loop)
+        self.job = self.root.after(50, self.loop)
