@@ -8,7 +8,7 @@ class FanRemoteGUI:
         # Structure of the GUI
         self.root = root
         self.root.title("Fan Remote")
-        self.root.geometry("300x500")
+        self.root.geometry("300x400")
         self.root.configure(bg="#2A4D6F")
         
         # Icon logo for the remote
@@ -32,26 +32,13 @@ class FanRemoteGUI:
             bd=4
         ) 
         self.screen.pack(pady=25)
-
-        # Buttons for the speeds
-        mode = {1: "1", 2: "2", 3: "3"}
-        
-        for speed, speed_status in mode.items():
-            button = tk.Button(self.root,
-                text = speed_status,
-                font=("Arial", 12, "bold"),
-                width=20,
-                height=3,
-                command = lambda s=speed: self.set_fan_speed(s)
-            ) 
-        button.pack(pady=6)
         
         # seperate button for power off
         self.button_off = tk.Button(
             self.root, 
             text="POWER OFF",
             font=("Arial", 12, "bold"),
-            width=20,
+            width=25,
             height=2,
             bg="#D81414",
             fg="white",
@@ -59,8 +46,21 @@ class FanRemoteGUI:
             activeforeground="white",
             command=self.power_off
         )
-        self.button_off.pack(pady=20)
+        self.button_off.pack(pady=15)
         
+        # Buttons for the speeds
+        mode = {1: "1", 2: "2", 3: "3"}
+        
+        for speed, speed_status in mode.items():
+            button = tk.Button(self.root,
+                text = speed_status,
+                font=("Arial", 12, "bold"),
+                width=25,
+                height=2,
+                command = lambda s=speed: self.set_fan_speed(s)
+            )
+            button.pack(pady=5)
+
     # Power off button
     def power_off(self):
         self.fan.on = False
