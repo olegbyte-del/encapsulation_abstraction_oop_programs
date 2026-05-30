@@ -13,6 +13,9 @@ class PetAppGui:
         
         self.input_frame()
         
+        self.image = None
+        self.upload_image()
+        
     def input_frame(self):
         input_frame = tk.LabelFrame(self.root,
             text = "Register Your pet".center(60),
@@ -26,3 +29,17 @@ class PetAppGui:
         tk.Label(input_frame, text = "Pet Name:", bg = "#FFFFFF").pack(anchor="w")
         self.pet_name = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
         self.pet_name.pack(fill="x", pady=(0,10))
+        
+        tk.Label(input_frame, text="Animal Type:", bg="#FFFFFF").pack(anchor="w")
+        self.entry_type = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
+        self.entry_type.pack(fill="x", pady=(0, 10))
+
+        tk.Label(input_frame, text="Age (Years):", bg="#ffffff").pack(anchor="w")
+        self.entry_age = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
+        self.entry_age.pack(fill="x", pady=(0, 15))
+        
+        self.upload_button = tk.Button(
+            self.input_frame, text = "🖼️ Upload Pet Photo (Optional)",
+            command=self.upload_image, bg="#C5AF88", relief="flat"
+        )
+        self.upload_button.pack(fill="x", pady=(0, 20))
