@@ -46,7 +46,7 @@ class PetAppGui:
         
         generate_button = tk.Button(input_frame, text="Generate Pet ID Card",
             command= self.generate_id, bg="#C39696", fg="white",
-            qfont=("Arial", 11, "bold"), relief="flat",
+            qfont=("Cosmic Sans MS", 11, "bold"), relief="flat",
         )
         generate_button.pack(fill="x", pady=(10, 0))
         
@@ -63,8 +63,10 @@ class PetAppGui:
                 image = image.resize((110, 130), Image.Resampling.LANCZOS)
                 self.pet_photo = ImageTk.PhotoImage(image)
                 self.photo_label_config(image=self.pet_photo, text="")
-            
-            
+            except FileNotFoundError:
+                self.photo_label_config(text="Image Not Found", font=("Cosmic Sans MS", 10))
+            except Exception as e:
+                messagebox.showwarning("Image Error!", "Failed to load the photo.")
         
         def upload_image(self):
             file_types = [("Image files", "*.jpg *.jpeg *.png *.bmp")]
@@ -73,8 +75,13 @@ class PetAppGui:
             if path:
                 self.image_path = path
                 self.upload_button.config(
-                    text="✅ Photo Attached", bg="#e7f3ff", fg="#ffffff"
+                    text="✅ Photo Attached", bg="#1CA23B", fg="#FFFFFF"
                 )
         
         def create_id_card_frame(self):
-            pass
+            self.card_frame = tk.Frame(self.root, bg = "#FFFFFF", bd=2, relief="groove")
+            self.card_frame.place(x=370, y=45, width=350, height=320)
+            
+            header = tk.Label(self.card_frame, text="OFFICIAL PET ID", bg="#B0A9A2", fg="#FFFFFF",
+                            font=("Cosmic Sans MS", 14, "bold"), pady=8)
+            header.pack(fill="x")
