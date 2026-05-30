@@ -34,15 +34,24 @@ class FanRemoteGUI:
         self.screen.pack(pady=25)
         
         # Buttons for the speeds
-        mode = {1: "1 Low", 2: "2 Medium", 3: "3 High"}
+        mode = {1: "1", 2: "2", 3: "3"}
         
         for speed, speed_status in mode.items():
-            button = tk.Button(self.root
-                text = speed_status
-                font=("Arial", 12, "Bold")
+            button = tk.Button(self.root,
+                text = speed_status,
+                font=("Arial", 12, "bold"),
                 width=20,
                 height=3,
-                action = lambda s=speed: self.set_fan_speed(s)
-            ) btn.pack(pady=6)
+                command = lambda s=speed: self.set_fan_speed(s)
+            ) 
+        button.pack(pady=6)
+
+        def set_fan_speed(self, speed):
+            self.fan.on = True
+            self.fan.speed = speed
+        
+            labels = {1: "LOW", 2: "MEDIUM", 3: "HIGH"}
+            self.screen_var.set(f"SPEED: {labels[speed]}")
+            
         
         
