@@ -51,7 +51,20 @@ class PetAppGui:
         generate_button.pack(fill="x", pady=(10, 0))
         
         def generate_id(self):
-            pass
+            default_image_file = r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\pet_profile_tracker_management_system\no_profile.png"
+            
+            if self.image_path:
+                check_image = self.image_path
+            else:
+                check_image = default_image_file
+            
+            try:
+                image = Image.open(check_image)
+                image = image.resize((110, 130), Image.Resampling.LANCZOS)
+                self.pet_photo = ImageTk.PhotoImage(image)
+                self.photo_label_config(image=self.pet_photo, text="")
+            
+            
         
         def upload_image(self):
             file_types = [("Image files", "*.jpg *.jpeg *.png *.bmp")]
