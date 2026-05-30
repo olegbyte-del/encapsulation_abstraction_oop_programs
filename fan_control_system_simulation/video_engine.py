@@ -20,6 +20,18 @@ class GIFPlayer:
             "off": base + "power off.gif"
         }
     
+    def load_gif(self, path): 
+        self.frames = []
+        file_index = 0
+        
+        while True:
+            Try:
+                frame = tk.PhotoImage(file=self.path, format = f"gif -index {file_index}")
+                self.frames.ppend(frame)
+                file_index += 1
+            except:
+                break
+            
     def loop(self):
         # loops the current gif that were selected
         self.label.config(image=self.frames[self.idx])
