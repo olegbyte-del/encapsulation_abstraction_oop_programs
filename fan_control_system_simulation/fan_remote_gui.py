@@ -32,7 +32,7 @@ class FanRemoteGUI:
             bd=4
         ) 
         self.screen.pack(pady=25)
-        
+
         # Buttons for the speeds
         mode = {1: "1", 2: "2", 3: "3"}
         
@@ -45,13 +45,35 @@ class FanRemoteGUI:
                 command = lambda s=speed: self.set_fan_speed(s)
             ) 
         button.pack(pady=6)
-
-        def set_fan_speed(self, speed):
-            self.fan.on = True
-            self.fan.speed = speed
         
-            labels = {1: "LOW", 2: "MEDIUM", 3: "HIGH"}
-            self.screen_var.set(f"SPEED: {labels[speed]}")
+        # seperate button for power off
+        self.button_off = tk.Button(
+            self.root, 
+            text="POWER OFF",
+            font=("Arial", 12, "bold"),
+            width=20,
+            height=2,
+            bg="#D81414",
+            fg="white",
+            activebackground="#790505",
+            activeforeground="white",
+            command=self.power_off
+        )
+        self.button_off.pack(pady=20)
+        
+    # Power off button
+    def power_off(self):
+        self.fan.on = False
+        self.screen_var.set("Fan off")
+            
+    # Dynamic Fan Control
+    def set_fan_speed(self, speed):
+        self.fan.on = True
+        self.fan.speed = speed
+        
+        labels = {1: "LOW", 2: "MEDIUM", 3: "HIGH"}
+        self.screen_var.set(f"SPEED: {labels[speed]}")
+        
             
         
         
