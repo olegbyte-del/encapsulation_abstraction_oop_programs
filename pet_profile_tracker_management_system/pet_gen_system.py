@@ -43,3 +43,18 @@ class PetAppGui:
             command=self.upload_image, bg="#C5AF88", relief="flat"
         )
         self.upload_button.pack(fill="x", pady=(0, 20))
+        
+        generate_button = tk.Button(input_frame, text="Generate Pet ID Card",
+            command= self.generate_id, bg="#C39696", fg="white",
+            qfont=("Arial", 11, "bold"), relief="flat",
+        )
+        generate_button.pack(fill="x", pady=(10, 0))
+        
+        def generate_id(self):
+            pass
+        
+        def upload_image(self):
+            pass
+        
+        def create_id_card_frame(self):
+            pass
