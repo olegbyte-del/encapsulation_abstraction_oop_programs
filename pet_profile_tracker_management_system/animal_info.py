@@ -14,6 +14,9 @@ class Pet:
             if age < 0:
                 print("Age cannot be less than zero!",
                     "Setting age to N/A", sep = "\n")
+                self.__age = "N/A"
+            else:
+                self.__age = age
         except Exception as e:
             print('Error Occured')
     

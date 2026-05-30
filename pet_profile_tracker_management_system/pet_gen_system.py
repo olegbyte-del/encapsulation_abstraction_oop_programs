@@ -61,6 +61,23 @@ class PetAppGui:
                 messagebox.showerror("Error", "Please fill all fields!")
                 return
             
+            try:
+                age = int(pet_age)
+                if age < 0 :
+                    raise ValueError
+            except ValueError:
+                messagebox.showerror("Error!", "Age cannot be negative!")
+                return
+
+            self.pet_object.set_name(pet_name)
+            self.pet_object.set_age(pet_age)
+            self.pet_object.set_animal_type(animal_type)
+            
+            self.pet_number_id.config(text=f"ID: {self.pet_object.get_id_number()}")
+            self.pet_name.config(text=f"Name: {self.pet_object.get_name()}")
+            self.pet_animal_type.config(text=f"Type: {self.pet_object.get_animal_type()}")
+            self.pet_age.config(text=f"Age:  {self.pet_object.get_age()} yrs old")      
+                
             default_image_file = r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\pet_profile_tracker_management_system\no_profile.png"
             
             if self.image:
