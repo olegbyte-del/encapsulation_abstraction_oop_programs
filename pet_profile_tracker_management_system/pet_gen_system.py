@@ -18,6 +18,14 @@ class PetAppGui:
         self.input_frame()
         self.create_id_card_frame()
         
+        LOGO_IMAGE_FILE = r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\pet_profile_tracker_management_system\pet_system_logo.webp"
+        try:
+            window_icon_img = Image.open(LOGO_IMAGE_FILE)
+            self.window_icon_photo = ImageTk.PhotoImage(window_icon_img)
+            self.root.iconphoto(False, self.window_icon_photo)
+        except Exception:
+            pass
+        
     def input_frame(self):
         input_frame = tk.LabelFrame(self.root,
             text = "Register Your pet".center(60),
