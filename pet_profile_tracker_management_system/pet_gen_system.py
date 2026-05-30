@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 
+from animal_info import Pet
 class PetAppGui:
     
     def __init__(self, root):
@@ -11,10 +12,11 @@ class PetAppGui:
         self.root.geometry("365x425")
         self.root.configure(bg="#DBA674")
         
-        self.input_frame()
-        
         self.image = None
-        self.upload_image()
+        self.pet_object = Pet()
+        
+        self.input_frame()
+        self.create_id_card_frame()
         
     def input_frame(self):
         input_frame = tk.LabelFrame(self.root,
@@ -39,7 +41,7 @@ class PetAppGui:
         self.entry_age.pack(fill="x", pady=(0, 15))
         
         self.upload_button = tk.Button(
-            self.input_frame, text = "🖼️ Upload Pet Photo (Optional)",
+            input_frame, text = "🖼️ Upload Pet Photo (Optional)",
             command=self.upload_image, bg="#C5AF88", relief="flat"
         )
         self.upload_button.pack(fill="x", pady=(0, 20))
@@ -51,6 +53,14 @@ class PetAppGui:
         generate_button.pack(fill="x", pady=(10, 0))
         
         def generate_id(self):
+            pet_name = self.pet_name_entry.get().strip()
+            animal_type = self.entry_type.get().strip()
+            pet_age = self.entry_age.get().strip()
+            
+            if not pet_name or not animal_type or not pet_age:
+                messagebox.showerror("Error", "Please fill all fields!")
+                return
+            
             default_image_file = r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\pet_profile_tracker_management_system\no_profile.png"
             
             if self.image:
@@ -87,32 +97,32 @@ class PetAppGui:
             header.pack(fill="x")
             
             self.photo_label = tk.Label(self.card_frame, text="No Photo", bg="#e4e6eb", relief="solid", bd=1
-        )
-        self.photo_label.place(x=20, y=60, width=110, height=130)
-        
-        self.pet_number_id = tk.Label(self.card_frame, text="ID: PET-XXXX",
-            font=("Cosmic Sans MS", 12, "bold"), bg="#bcc2c7", fg="#000000",
-        )
-        self.pet_number_id.place(x=150, y=60)
-        
-        self.pet_name = tk.Label(self.card_frame, text="Name: --------",
-            font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000",
-        )
-        self.pet_name.place(x=150, y=95)
+            )
+            self.photo_label.place(x=20, y=60, width=110, height=130)
+            
+            self.pet_number_id = tk.Label(self.card_frame, text="ID: PET-XXXX",
+                font=("Cosmic Sans MS", 12, "bold"), bg="#bcc2c7", fg="#000000",
+            )
+            self.pet_number_id.place(x=150, y=60)
+            
+            self.pet_name = tk.Label(self.card_frame, text="Name: --------",
+                font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000",
+            )
+            self.pet_name.place(x=150, y=95)
 
-        self.pet_animal_type = tk.Label(
-            self.card_frame, text="Type: --------",
+            self.pet_animal_type = tk.Label(
+                self.card_frame, text="Type: --------",
+                font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000"
+            )
+            self.pet_animal_type.place(x=150, y=125)
+
+            self.pet_age = tk.Label(self.card_frame, text="Age:  --------",
             font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000"
-        )
-        self.pet_animal_type.place(x=150, y=125)
+            )
+            self.pet_age.place(x=150, y=155)
 
-        self.pet_age = tk.Label(self.card_frame, text="Age:  --------",
-        font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000"
-        )
-        self.pet_age.place(x=150, y=155)
-
-        footer = tk.Label(self.card_frame, text="Happy pets, well-trained",
-            bg="#242526", fg="#b0b3b8", font=("Arial", 9, "italic"),
-        )
-        footer.pack(side="bottom", fill="x", pady=5)
-        
+            footer = tk.Label(self.card_frame, text="Happy pets, well-trained",
+                bg="#242526", fg="#b0b3b8", font=("Arial", 9, "italic"),
+            )
+            footer.pack(side="bottom", fill="x", pady=5)
+            
