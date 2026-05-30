@@ -1,6 +1,8 @@
 # video_engine
 
 import tkinter as tk
+import os
+import threading
 
 class GIFPlayer:
     """Initialize animated GIF playback"""
@@ -21,19 +23,20 @@ class GIFPlayer:
         self.idx = 0
         self.job = None
         
+        base = os.path.dirname(os.path.abspath(__file__))
+        
         # Icon logo for the video
-        self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\fan_control_system_simulation\remote.png")
+        self.logo_img = tk.PhotoImage(file=os.path.join(base, "remote.png"))
         self.root.iconphoto(False, self.logo_img)
         
         # setting exact paths for gif files
-        base = r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\fan_control_system_simulation\\"
         self.paths = {
-            1: base + "low.gif",
-            2: base + "medium.gif",
-            3: base + "fast.gif",
-            "off": base + "power off.gif"
+            1: os.path.join(base, "low.gif"),
+            2: os.path.join(base, "medium.gif"),
+            3: os.path.join(base, "fast.gif"),
+            "off": os.path.join(base, "power_off.gif")
         }
-    
+
     def load_gif(self, path): 
         """ Extract all individual from the specified GIF file path"""
 
@@ -41,18 +44,19 @@ class GIFPlayer:
             self.root.after_cancel(self.job)
             self.job = None
             
-        self.frames = []
+        temp_frames = []
         file_index = 0
         self.idx = 0
         
         while True:
             try:
                 frame = tk.PhotoImage(file=path, format = f"gif -index {file_index}")
-                self.frames.append(frame)
+                temp_frames.append(frame)
                 file_index += 1
             except:
                 break
         
+        self.frames =temp_frames
         self.label.imgs = self.frames
         
     def loop(self):
@@ -64,3 +68,11 @@ class GIFPlayer:
         self.label.config(image=self.frames[self.idx])
         self.idx = (self.idx + 1) % len(self.frames)
         self.job = self.root.after(50, self.loop)
+        
+    def play(self, state):
+        path = self.paths.get(state)
+        if path:
+            def load_then_play():
+                self.load_gif(path)
+                self.root.after(0, self.loop)
+            threading.Thread(target=load_then_play, daemon=True).start()

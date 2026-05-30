@@ -70,8 +70,7 @@ class FanRemoteGUI:
         self.fan.on = False
         self.screen_var.set("Fan off")
         
-        self.gif_player.load_gif(self.gif_player.paths["off"])
-        self.gif_player.loop()
+        self.gif_player.play("off")
             
     # Dynamic Fan Control
     def set_fan_speed(self, speed):
@@ -81,7 +80,6 @@ class FanRemoteGUI:
         labels = {1: "LOW", 2: "MEDIUM", 3: "HIGH"}
         self.screen_var.set(f"SPEED: {labels[speed]}")
         
-        path = self.gif_player.paths[speed]
-        self.gif_player.load_gif(path)
+        self.gif_player.play(speed)
         
         
