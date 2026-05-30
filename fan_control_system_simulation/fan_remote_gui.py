@@ -2,6 +2,7 @@
 
 import tkinter as tk
 from fan_logic import Fan
+from video_engine import GIFPlayer
 
 class FanRemoteGUI:
     def __init__(self, root):
@@ -17,6 +18,9 @@ class FanRemoteGUI:
         
         # Initialize object fan from fan_logic
         self.fan = Fan()
+        
+        # initialize video_engine
+        self.gif_player = GIFPlayer(self.screen, self.root)
         
         # Screen Display
         self.screen_var = tk.StringVar(value="Fan off")
@@ -65,6 +69,10 @@ class FanRemoteGUI:
     def power_off(self):
         self.fan.on = False
         self.screen_var.set("Fan off")
+        
+        self.gif_player.load_gif(self.gif_player.paths["off"])
+        self.gif_player.idx = 0
+        self.gif_player.loop()
             
     # Dynamic Fan Control
     def set_fan_speed(self, speed):

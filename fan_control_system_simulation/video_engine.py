@@ -6,10 +6,17 @@ class GIFPlayer:
     """Initialize animated GIF playback"""
     
     #initializing class for video playback
-    def __init__(self, display_screen, clock_timer):
+    def __init__(self, root):
         """Initialize constructor as well as parameters and specific directory of files"""
-        self.label = display_screen
-        self.root = clock_timer
+        
+        self.window = tk.Toplevel(root)
+        self.window.title("Fan Speed")
+        self.window.geometry("400x400")
+        
+        self.label = tk.Label(self.window)
+        self.label.pack()
+        
+        self.root = self.window
         self.frames = []
         self.idx = 0
         self.job = None
