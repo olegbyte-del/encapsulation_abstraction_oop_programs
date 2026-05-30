@@ -5,7 +5,9 @@ from fan_logic import Fan
 from video_engine import GIFPlayer
 
 class FanRemoteGUI:
+    """GUI remote controller for fan"""
     def __init__(self, root):
+        """Intialize the fan remote interface"""
         # Structure of the GUI
         self.root = root
         self.root.title("Fan Remote")
@@ -67,6 +69,7 @@ class FanRemoteGUI:
 
     # Power off button
     def power_off(self):
+        """Turn the fan off and on"""
         self.fan.on = False
         self.screen_var.set("Fan off")
         
@@ -74,6 +77,7 @@ class FanRemoteGUI:
             
     # Dynamic Fan Control
     def set_fan_speed(self, speed):
+        """set fan speed and update display"""
         self.fan.on = True
         self.fan.speed = speed
         

@@ -1,18 +1,4 @@
 # Main Program
-
-import tkinter as tk
-from fan_remote_gui import FanRemoteGUI
-
-def main():
-    root = tk.Tk()
-    remote = FanRemoteGUI(root)
-    
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
-    
-
 # Program Plan
 
 # INSTRUCTIONS (Base Program)
@@ -36,3 +22,18 @@ if __name__ == "__main__":
 # Button changes fan speed
 # Show fan animation (GIF/video) using csv
 # Animation speed matches selected fan speed
+
+import tkinter as tk
+from fan_remote_gui import FanRemoteGUI
+
+def main():
+    """start the fan application"""
+    root = tk.Tk()
+    remote = FanRemoteGUI(root)
+    
+    root.mainloop()
+
+if __name__ == "__main__":
+    """runs the program"""
+    main()
+    

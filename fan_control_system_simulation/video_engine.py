@@ -5,7 +5,7 @@ import os
 import threading
 
 class GIFPlayer:
-    """Initialize animated GIF playback"""
+    """IHandles loading nad looping GIF"""
     
     #initializing class for video playback
     def __init__(self, root):
@@ -38,7 +38,7 @@ class GIFPlayer:
         }
 
     def load_gif(self, path): 
-        """ Extract all individual from the specified GIF file path"""
+        """Extract all individual from the specified GIF file path"""
 
         if self.job:
             self.root.after_cancel(self.job)
@@ -70,6 +70,7 @@ class GIFPlayer:
         self.job = self.root.after(50, self.loop)
         
     def play(self, state):
+        """Play gif based on fan speed"""
         path = self.paths.get(state)
         if path:
             def load_then_play():
