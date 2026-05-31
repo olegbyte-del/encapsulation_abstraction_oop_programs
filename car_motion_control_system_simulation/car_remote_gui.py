@@ -28,7 +28,7 @@ class CarControllerGUI:
         self.gif_player = GIFPlayer(self.root)
         
         # Screen Display
-        self.screen_var = tk.StringVar(value="Speed: 0 km [Stopped]")
+        self.screen_var = tk.StringVar(value="Speed: 0 km/h [Stopped]")
         self.screen = tk.Label(
             self.root, 
             textvariable=self.screen_var, 
@@ -43,7 +43,6 @@ class CarControllerGUI:
         self.screen.pack(pady=25)
         
         # Button for Gas and brake side by side
-        
         button_frame = tk.Frame(self.root, bg="#2A4D6F")
         button_frame.pack(pady=20)
         
@@ -62,7 +61,7 @@ class CarControllerGUI:
         self.gas_button.pack(pady=15)
 
         brake_button = tk.Button(self.root,
-            text = speed_status,
+            text = "Brake",
             font=("Arial", 12, "bold"),
             width=25,
             height=2,
@@ -73,17 +72,18 @@ class CarControllerGUI:
             command = self.brake_car
         )
         brake_button.pack(side="left", padx=10)
-
-    # Power off button
-    def power_off(self):
-        """Turn the fan off and on"""
-        self.fan.on = False
-        self.screen_var.set("Fan off")
         
-        self.gif_player.play("off")
-            
+        self.update_car_display()
+
+    # accelerate_car
+    def accelerate_car(self):
+        """Accelerate the car by +5 km/h"""
+        self.car.accelerate()
+        print(f"Accelerating... Current Speed: {self.car.get_speed()} km/h")
+        self.update_car_display()
+        
     # Dynamic Fan Control
-    def set_fan_speed(self, speed):
+    def brake_car(self, speed):
         """set fan speed and update display"""
         self.fan.on = True
         self.fan.speed = speed
@@ -92,5 +92,8 @@ class CarControllerGUI:
         self.screen_var.set(f"SPEED: {labels[speed]}")
         
         self.gif_player.play(speed)
+        
+    def update_car_display(self):
+        pass
         
         
