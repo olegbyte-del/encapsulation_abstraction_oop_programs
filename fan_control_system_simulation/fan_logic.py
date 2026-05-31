@@ -15,42 +15,42 @@ class Fan:
         
     @property # getter
     def speed(self):
-        """reads fan speed"""
+        """Read fan speed"""
         return self.__speed
         
     @speed.setter
     def speed(self, new_speed): 
-        """condition for the attribute speed to only slow, medium, and fast"""
+        """cCondition for the attribute speed to be only slow, medium, or fast"""
         if new_speed in [Fan.SLOW, Fan.MEDIUM, Fan.FAST]:
             self.__speed = new_speed
         
     @property
     def radius(self):
-        """reads radius attribute"""
+        """Read radius attribute"""
         return self.__radius
         
     @radius.setter
     def radius(self, radius):
-        """condition for fan radius to fixed value"""
+        """Condition for fan radius to be a fixed value"""
         self.__radius = radius
         
     @property
     def color(self):
-        """reads the color attribute"""
+        """Read the color attribute"""
         return self.__color
 
     @color.setter
     def color(self, color):
-        """This means that color is only this value given"""
+        """Set the fan color attribute"""
         self.__color = color
         
     @property
     def on(self):
-        """reads the on attribute"""
+        """Read the power state on attribute"""
         return self.__on
         
     @on.setter
     def on(self, on):
-        """This means that on is only this value given"""
+        """Set the fan power state attribute"""
         self.__on = on
             

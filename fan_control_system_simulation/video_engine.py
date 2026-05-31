@@ -5,9 +5,9 @@ import os
 import threading
 
 class GIFPlayer:
-    """IHandles loading nad looping GIF"""
+    """Handles loading and looping GIF"""
     
-    #initializing class for video playback
+    # initializing class for video playback
     def __init__(self, root):
         """Initialize constructor as well as parameters and specific directory of files"""
         
@@ -20,7 +20,7 @@ class GIFPlayer:
         
         self.root = self.window
         self.frames = []
-        self.idx = 0
+        self.frame_index = 0
         self.job = None
         
         base = os.path.dirname(os.path.abspath(__file__))
@@ -38,7 +38,7 @@ class GIFPlayer:
         }
 
     def load_gif(self, path): 
-        """Extract all individual from the specified GIF file path"""
+        """Extract all individual frames from the specified GIF file path"""
 
         if self.job:
             self.root.after_cancel(self.job)
@@ -46,7 +46,7 @@ class GIFPlayer:
             
         temp_frames = []
         file_index = 0
-        self.idx = 0
+        self.frame_index = 0
         
         while True:
             try:
@@ -56,17 +56,17 @@ class GIFPlayer:
             except:
                 break
         
-        self.frames =temp_frames
+        self.frames = temp_frames
         self.label.imgs = self.frames
         
     def loop(self):
-        """Cycle through the GIF continously"""
+        """Cycle through the GIF continuously"""
         if not self.frames:
             return
         
-        # loops the current gif that were selected
-        self.label.config(image=self.frames[self.idx])
-        self.idx = (self.idx + 1) % len(self.frames)
+        # Loops the current gif that was selected
+        self.label.config(image=self.frames[self.frame_index])
+        self.frame_index = (self.frame_index + 1) % len(self.frames)
         self.job = self.root.after(50, self.loop)
         
     def play(self, state):

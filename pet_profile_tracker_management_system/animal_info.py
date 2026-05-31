@@ -1,10 +1,10 @@
 # Animal Information
 import random
 class Pet:
-    """Class that store pet profile data"""
+    """Class that stores pet profile data"""
 
     def __init__(self, name = "", animal_type= "", age=0):
-        """Initialize pet instance variables and generate a random 4 digit code"""
+        """Initialize pet instance variables and generate a random 4-digit code"""
         self.__name = name
         self.__animal_type = animal_type
         self.__age = age
@@ -12,7 +12,7 @@ class Pet:
     
     # Setter
     def set_age(self, age):
-        """Validates pet age if negative is input"""
+        """Validates pet age if a negative value is input"""
         try:
             if age < 0:
                 print("Age cannot be less than zero!",
@@ -20,15 +20,15 @@ class Pet:
                 self.__age = "N/A"
             else:
                 self.__age = age
-        except Exception as e:
+        except Exception as error:
             print('Error Occured')
     
     def set_animal_type(self, animal_type):
-        """Set pets animal type"""
+        """Set pet's animal type"""
         self.__animal_type = animal_type
     
     def set_name(self, name):
-        """set pet name and automatically formatting the name"""
+        """Set pet name and automatically format the name"""
         self.__name = name.title()
     
     # Getter
