@@ -32,7 +32,7 @@ class GIFPlayer:
         
         # setting exact paths for gif files
         self.paths = {
-            1: os.path.join(base, "car_not_moving.gif"),
+            1: os.path.join(base, "car_brake.gif"),
             2: os.path.join(base, "car_moving.gif"),
             3: os.path.join(base, "car_fast.gif"),
             4: os.path.join(base, "flying.gif"),
@@ -51,7 +51,7 @@ class GIFPlayer:
         try:
             frame = tk.PhotoImage(file=path, format = f"gif -index {frame_index}")
             temp_frames.append(frame)
-            self.root.after(0, lambda: self.load_gif(path, frame_index + 1, temp_frames))
+            self.root.after(10, lambda: self.load_gif(path, frame_index + 1, temp_frames))
         except:
             self.frames = temp_frames
             self.label.imgs = self.frames
@@ -75,8 +75,10 @@ class GIFPlayer:
             if self.job:
                 self.root.after_cancel(self.job)
                 self.job = None
+        self.frames = []
+        self._loading_path = path 
 
-            self.frames = []
-            self._loading_path = path
-            self.load_gif(path)
-        
+        threading.Thread(
+            target=lambda: self.root.after(0, lambda: self.load_gif(path)),
+            daemon=True
+        ).start()
