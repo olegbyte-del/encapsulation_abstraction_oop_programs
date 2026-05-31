@@ -22,3 +22,18 @@
 # Brake → stopping car meme video
 # Very high speed → flying/losing control meme video
 # Videos change based on current speed value
+
+import tkinter as tk
+from fan_remote_gui import FanRemoteGUI
+
+def main():
+    """start the fan application"""
+    root = tk.Tk()
+    remote = FanRemoteGUI(root)
+    
+    root.mainloop()
+
+if __name__ == "__main__":
+    """runs the program"""
+    main()
+    
