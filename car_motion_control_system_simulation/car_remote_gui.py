@@ -14,18 +14,21 @@ class CarControllerGUI:
         self.root.geometry("380x400")
         self.root.configure(bg="#74797D")
         
-        # Icon logo for the remote
-        self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\car_motion_control_system_simulation\controller_logo.png")
-        self.root.iconphoto(False, self.logo_img)
+        # Icon logo for the controller
+        try:
+            self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\car_motion_control_system_simulation\controller_logo.png")
+            self.root.iconphoto(False, self.logo_img)
+        except:
+            pass
         
-        # Initialize object fan from fan_logic
-        self.fan = Fan()
+        # Initialize object Car from car_status
+        self.fan = Car(2026, "Toyota Hilux")
         
         # initialize video_engine
         self.gif_player = GIFPlayer(self.root)
         
         # Screen Display
-        self.screen_var = tk.StringVar(value="Fan off")
+        self.screen_var = tk.StringVar(value="Speed: 0 km [Stopped]")
         self.screen = tk.Label(
             self.root, 
             textvariable=self.screen_var, 
@@ -39,33 +42,37 @@ class CarControllerGUI:
         ) 
         self.screen.pack(pady=25)
         
-        # seperate button for power off
-        self.button_off = tk.Button(
+        # Button for Gas and brake side by side
+        
+        button_frame = tk.Frame(self.root, bg="#2A4D6F")
+        button_frame.pack(pady=20)
+        
+        self.gas_button = tk.Button(
             self.root, 
-            text="POWER OFF",
+            text="GAS",
             font=("Arial", 12, "bold"),
             width=25,
             height=2,
-            bg="#D81414",
+            bg="#1CA23B",
             fg="white",
-            activebackground="#790505",
+            activebackground="#0E5A1F",
             activeforeground="white",
-            command=self.power_off
+            command=self.accelerate_car
         )
-        self.button_off.pack(pady=15)
-        
-        # Buttons for the speeds
-        mode = {1: "1", 2: "2", 3: "3"}
-        
-        for speed, speed_status in mode.items():
-            button = tk.Button(self.root,
-                text = speed_status,
-                font=("Arial", 12, "bold"),
-                width=25,
-                height=2,
-                command = lambda s=speed: self.set_fan_speed(s)
-            )
-            button.pack(pady=5)
+        self.gas_button.pack(pady=15)
+
+        brake_button = tk.Button(self.root,
+            text = speed_status,
+            font=("Arial", 12, "bold"),
+            width=25,
+            height=2,
+            bg="#EC1B1B",
+            fg="white",
+            activebackground="#840F0F",
+            activeforeground="white",
+            command = self.brake_car
+        )
+        brake_button.pack(side="left", padx=10)
 
     # Power off button
     def power_off(self):
