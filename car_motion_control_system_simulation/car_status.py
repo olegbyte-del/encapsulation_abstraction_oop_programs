@@ -10,21 +10,23 @@ class Car:
         self.__speed += 5
         
     def brake(self):
-        self.speed -= 5
+        self.__speed -= 5
+        if self.__speed < 0:
+            self.__speed = 0
         
     def speed(self, new_speed): 
         if new_speed < 0:
             print("speed cannot be negative!")
         else:
-            pass
+            self.__speed = new_speed
 
-    def speed(self):
+    def get_speed(self):
         return self.__speed
     
-    def make(self):
+    def get_make(self):
         return self.__make
     
-    def year_model(self):
+    def get_year_model(self):
         return self.__year_model
         
     

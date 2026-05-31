@@ -1,21 +1,21 @@
 # Car remote gui
 
 import tkinter as tk
-from fan_logic import Fan
+from car_status import Car
 from video_engine import GIFPlayer
 
-class FanRemoteGUI:
-    """GUI remote controller for fan"""
+class CarControllerGUI:
+
     def __init__(self, root):
-        """Intialize the fan remote interface"""
+
         # Structure of the GUI
         self.root = root
-        self.root.title("Fan Remote")
-        self.root.geometry("300x400")
-        self.root.configure(bg="#2A4D6F")
+        self.root.title("Car Controller")
+        self.root.geometry("380x400")
+        self.root.configure(bg="#74797D")
         
         # Icon logo for the remote
-        self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\fan_control_system_simulation\remote.png")
+        self.logo_img = tk.PhotoImage(file=r"D:\PUP\First year - Second Semester\Object Oriented Programming\encapsulation_abstraction_oop_programs\car_motion_control_system_simulation\controller_logo.png")
         self.root.iconphoto(False, self.logo_img)
         
         # Initialize object fan from fan_logic

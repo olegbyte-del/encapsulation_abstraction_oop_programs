@@ -24,12 +24,12 @@
 # Videos change based on current speed value
 
 import tkinter as tk
-from fan_remote_gui import FanRemoteGUI
+from car_remote_gui import CarControllerGUI
 
 def main():
-    """start the fan application"""
+    """start the Car application"""
     root = tk.Tk()
-    remote = FanRemoteGUI(root)
+    remote = CarControllerGUI(root)
     
     root.mainloop()
 
