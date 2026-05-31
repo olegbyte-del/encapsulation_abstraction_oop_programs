@@ -90,6 +90,19 @@ class CarControllerGUI:
         self.update_car_display()
         
     def update_car_display(self):
-        pass
+        speed = self.car.get_speed()
         
-        
+        if speed == 0:
+            self.screen_var.set(f"Speed: {speed} km/h\n")
+            self.gif_player.play("")  
+            
+        elif 5 <= speed <= 25:
+            self.screen_var.set(f"Speed: {speed} km/h\n")
+            self.gif_player.play("")   
+            
+        elif 30 <= speed <= 55:
+            self.screen_var.set(f"Speed: {speed} km/h\n")
+            self.gif_player.play("")     
+        else:
+            self.screen_var.set(f"Speed: {speed} km/h\n")
+            self.gif_player.play("")  
