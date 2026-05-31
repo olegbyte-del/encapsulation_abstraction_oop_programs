@@ -75,23 +75,19 @@ class CarControllerGUI:
         
         self.update_car_display()
 
-    # accelerate_car
+    # accelerate the car
     def accelerate_car(self):
         """Accelerate the car by +5 km/h"""
         self.car.accelerate()
-        print(f"Accelerating... Current Speed: {self.car.get_speed()} km/h")
+        print(f"Current Speed: {self.car.get_speed()} km/h")
         self.update_car_display()
         
-    # Dynamic Fan Control
-    def brake_car(self, speed):
-        """set fan speed and update display"""
-        self.fan.on = True
-        self.fan.speed = speed
-        
-        labels = {1: "LOW", 2: "MEDIUM", 3: "HIGH"}
-        self.screen_var.set(f"SPEED: {labels[speed]}")
-        
-        self.gif_player.play(speed)
+    # Brake the car 
+    def brake_car(self):
+        """brake the car by -5 km/h"""
+        self.car.brake()
+        print(f"Current Speed: {self.car.get_speed()} km/h")
+        self.update_car_display()
         
     def update_car_display(self):
         pass
