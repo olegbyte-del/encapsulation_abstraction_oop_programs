@@ -8,7 +8,7 @@ class PetAppGui:
     """Pet App GUI for registering pets"""
     
     def __init__(self, root):
-        """Initialize the attributes and the main app tkinter"""
+        """Initialize the attributes and the main Tkinter application window"""
         self.root = root 
         self.root.title("Pet ID Profile Generator")
         self.root.geometry("740x450")
@@ -29,10 +29,10 @@ class PetAppGui:
             pass
         
     def input_frame(self):
-        """Create an entry panel that requires the user to fill"""
+        """Create an entry panel for the user to fill out"""
         input_frame = tk.LabelFrame(self.root,
-            text = "Register Your pet".center(60),
-            font = ("Cosmic Sans MS", 12, "bold"),
+            text = "Register Your Pet".center(60),
+            font = ("Comic Sans MS", 12, "bold"),
             padx=15,
             pady= 15,
             bg= "#D8C8C8"
@@ -40,15 +40,15 @@ class PetAppGui:
         input_frame.place(x=20, y=20, width=320, height=400)
         
         tk.Label(input_frame, text = "Pet Name:", bg = "#FFFFFF").pack(anchor="w")
-        self.pet_name_entry = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
+        self.pet_name_entry = tk.Entry(input_frame, font=("Comic Sans MS", 11))
         self.pet_name_entry.pack(fill="x", pady=(0,10))
         
         tk.Label(input_frame, text="Animal Type:", bg="#FFFFFF").pack(anchor="w")
-        self.entry_type = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
+        self.entry_type = tk.Entry(input_frame, font=("Comic Sans MS", 11))
         self.entry_type.pack(fill="x", pady=(0, 10))
 
         tk.Label(input_frame, text="Age (Years):", bg="#ffffff").pack(anchor="w")
-        self.entry_age = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
+        self.entry_age = tk.Entry(input_frame, font=("Comic Sans MS", 11))
         self.entry_age.pack(fill="x", pady=(0, 15))
         
         self.upload_button = tk.Button(
@@ -59,12 +59,12 @@ class PetAppGui:
         
         generate_button = tk.Button(input_frame, text="Generate Pet ID Card",
             command= self.generate_id, bg="#C39696", fg="white",
-            font=("Cosmic Sans MS", 11, "bold"), relief="flat",
+            font=("Comic Sans MS", 11, "bold"), relief="flat",
         )
         generate_button.pack(fill="x", pady=(10, 0))
         
     def generate_id(self):
-        """Generate the id which update the card display"""
+        """Generate the ID which updates the card display"""
         pet_name = self.pet_name_entry.get().strip()
         animal_type = self.entry_type.get().strip()
         pet_age = self.entry_age.get().strip()
@@ -103,12 +103,12 @@ class PetAppGui:
             self.pet_photo = ImageTk.PhotoImage(image)
             self.photo_label.config(image=self.pet_photo, text="")
         except FileNotFoundError:
-            self.photo_label.config(text="Image Not Found", font=("Cosmic Sans MS", 10))
-        except Exception as e:
+            self.photo_label.config(text="Image Not Found", font=("Comic Sans MS", 10))
+        except Exception as error:
             messagebox.showwarning("Image Error!", "Failed to load the photo.")
         
     def upload_image(self):
-        """Allows user to browse image of their dogs profile picture"""
+        """Allows users to browse for an image of their pet's profile picture"""
         file_types = [("Image files", "*.jpg *.jpeg *.png *.bmp")]
         path = filedialog.askopenfilename(title="Select Photo", filetypes=file_types)
         
@@ -124,7 +124,7 @@ class PetAppGui:
         self.card_frame.place(x=370, y=45, width=350, height=250)
             
         header = tk.Label(self.card_frame, text="OFFICIAL PET ID", bg="#9B0808", fg="#FFFFFF",
-            font=("Cosmic Sans MS", 15, "bold"), pady=8)
+            font=("Comic Sans MS", 15, "bold"), pady=8)
         header.pack(fill="x")
             
         self.photo_label = tk.Label(self.card_frame, text="No Photo", bg="#e4e6eb", relief="solid", bd=1
@@ -132,23 +132,23 @@ class PetAppGui:
         self.photo_label.place(x=20, y=60, width=150, height=130)
             
         self.pet_number_id = tk.Label(self.card_frame, text="ID: PET-XXXX",
-            font=("Cosmic Sans MS", 12, "bold"), bg="#bcc2c7", fg="#000000",
+            font=("Comic Sans MS", 12, "bold"), bg="#bcc2c7", fg="#000000",
         )
         self.pet_number_id.place(x=180, y=65)   
             
         self.pet_name = tk.Label(self.card_frame, text="Name: --------",
-            font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000",
+            font=("Comic Sans MS", 12), bg="#bcc2c7", fg="#000000",
         )
         self.pet_name.place(x=180, y=100)
 
         self.pet_animal_type = tk.Label(
             self.card_frame, text="Type: --------",
-            font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000"
+            font=("Comic Sans MS", 12), bg="#bcc2c7", fg="#000000"
         )
         self.pet_animal_type.place(x=180, y=130)
 
-        self.pet_age = tk.Label(self.card_frame, text="Age:  --------",
-            font=("Cosmic Sans MS", 12), bg="#bcc2c7", fg="#000000"
+        self.pet_age = tk.Label(self.card_frame, text="Age: --------",
+            font=("Comic Sans MS", 12), bg="#bcc2c7", fg="#000000"
         )
         self.pet_age.place(x=180, y=160)
 
