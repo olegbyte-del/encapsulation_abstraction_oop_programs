@@ -36,6 +36,7 @@ from pet_gen_system import PetAppGui
 # Output becomes a “pet profile generator” instead of just console input/output
 
 def main():
+    """Intialize the tkinter"""
     root = tk.Tk()
     app = PetAppGui(root)
     
