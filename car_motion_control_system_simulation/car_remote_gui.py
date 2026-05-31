@@ -11,7 +11,7 @@ class CarControllerGUI:
         # Structure of the GUI
         self.root = root
         self.root.title("Car Controller")
-        self.root.geometry("450x400")
+        self.root.geometry("300x300")
         self.root.configure(bg="#74797D")
         
         # Icon logo for the controller
@@ -71,7 +71,7 @@ class CarControllerGUI:
             activeforeground="white",
             command = self.brake_car
         )
-        brake_button.pack(side="left", padx=10)
+        brake_button.pack(pady=5)
         
         self.update_car_display()
 

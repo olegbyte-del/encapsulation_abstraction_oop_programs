@@ -2,6 +2,7 @@
 
 import tkinter as tk
 import os
+import threading
 
 class GIFPlayer:
     """IHandles loading nad looping GIF"""
@@ -11,7 +12,7 @@ class GIFPlayer:
         """Initialize constructor as well as parameters and specific directory of files"""
         
         self.window = tk.Toplevel(root)
-        self.window.title("Fan Speed")
+        self.window.title("Car Speed")
         self.window.geometry("400x400")
         
         self.label = tk.Label(self.window)
@@ -47,13 +48,10 @@ class GIFPlayer:
         if temp_frames is None:
             temp_frames = []
 
-        file_index = 0
-        self.idx = 0
-
         try:
-            frame = tk.PhotoImage(file=path, format = f"gif -index {file_index}")
+            frame = tk.PhotoImage(file=path, format = f"gif -index {frame_index}")
             temp_frames.append(frame)
-            self.root.after(0, lambda: self.load_gif(path, file_index + 1, temp_frames))
+            self.root.after(0, lambda: self.load_gif(path, frame_index + 1, temp_frames))
         except:
             self.frames = temp_frames
             self.label.imgs = self.frames
@@ -77,6 +75,7 @@ class GIFPlayer:
             if self.job:
                 self.root.after_cancel(self.job)
                 self.job = None
+
             self.frames = []
             self._loading_path = path
             self.load_gif(path)
