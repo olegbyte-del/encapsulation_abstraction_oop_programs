@@ -2,7 +2,6 @@
 
 import tkinter as tk
 import os
-import threading
 
 class GIFPlayer:
     """IHandles loading nad looping GIF"""
@@ -22,6 +21,7 @@ class GIFPlayer:
         self.frames = []
         self.idx = 0
         self.job = None
+        self._loading_path = None
         
         base = os.path.dirname(os.path.abspath(__file__))
         
@@ -38,7 +38,7 @@ class GIFPlayer:
             "brake": os.path.join(base, "car_brake.gif")
         }
 
-    def load_gif(self, path): 
+    def load_gif(self, path, frame_index = 0, temp_frames = None): 
         """Extract all individual from the specified GIF file path"""
 
         if path != self._loading_path:
@@ -49,17 +49,16 @@ class GIFPlayer:
 
         file_index = 0
         self.idx = 0
-        
-        while True:
-            try:
-                frame = tk.PhotoImage(file=path, format = f"gif -index {file_index}")
-                temp_frames.append(frame)
-                self.root.after(0, lambda: self.load_gif(path, file_index + 1, temp_frames))
-            except:
-                self.frames = temp_frames
-                self.label.imgs = self.frames
-                self.idx = 0
-                self.loop()
+
+        try:
+            frame = tk.PhotoImage(file=path, format = f"gif -index {file_index}")
+            temp_frames.append(frame)
+            self.root.after(0, lambda: self.load_gif(path, file_index + 1, temp_frames))
+        except:
+            self.frames = temp_frames
+            self.label.imgs = self.frames
+            self.idx = 0
+            self.loop()
         
     def loop(self):
         """Play gif based on car speed"""

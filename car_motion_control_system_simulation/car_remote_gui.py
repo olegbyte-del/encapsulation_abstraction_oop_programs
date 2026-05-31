@@ -11,7 +11,7 @@ class CarControllerGUI:
         # Structure of the GUI
         self.root = root
         self.root.title("Car Controller")
-        self.root.geometry("380x400")
+        self.root.geometry("450x400")
         self.root.configure(bg="#74797D")
         
         # Icon logo for the controller
@@ -22,7 +22,7 @@ class CarControllerGUI:
             pass
         
         # Initialize object Car from car_status
-        self.fan = Car(2026, "Toyota Hilux")
+        self.car = Car(2026, "Toyota Hilux")
         
         # initialize video_engine
         self.gif_player = GIFPlayer(self.root)
@@ -94,15 +94,15 @@ class CarControllerGUI:
         
         if speed == 0:
             self.screen_var.set(f"Speed: {speed} km/h\n")
-            self.gif_player.play("")  
+            self.gif_player.play(1)  
             
         elif 5 <= speed <= 25:
             self.screen_var.set(f"Speed: {speed} km/h\n")
-            self.gif_player.play("")   
+            self.gif_player.play(2)   
             
         elif 30 <= speed <= 55:
             self.screen_var.set(f"Speed: {speed} km/h\n")
-            self.gif_player.play("")     
+            self.gif_player.play(3)     
         else:
             self.screen_var.set(f"Speed: {speed} km/h\n")
-            self.gif_player.play("")  
+            self.gif_player.play(4)  
