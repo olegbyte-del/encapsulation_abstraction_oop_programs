@@ -13,13 +13,13 @@ class Car:
         self.__speed += 5
         
     def brake(self):
-        """decress 5 speed of the vehicle"""
+        """decrease 5 speed of the vehicle"""
         self.__speed -= 5
         if self.__speed < 0:
             self.__speed = 0
         
     def speed(self, new_speed):
-        """Prevents the speed becoming negative"""
+        """Prevents the speed from becoming negative"""
         if new_speed < 0:
             print("speed cannot be negative!")
         else:

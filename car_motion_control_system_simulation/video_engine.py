@@ -20,7 +20,7 @@ class GIFPlayer:
         
         self.root = self.window
         self.frames = []
-        self.idx = 0
+        self.frame_index = 0
         self.job = None
         self._loading_path = None
         
@@ -40,7 +40,7 @@ class GIFPlayer:
         }
 
     def load_gif(self, path, frame_index = 0, temp_frames = None): 
-        """Extract all individual from the specified GIF file path"""
+        """Extract all individual frames from the specified GIF file path"""
 
         if path != self._loading_path:
             return
@@ -55,7 +55,7 @@ class GIFPlayer:
         except:
             self.frames = temp_frames
             self.label.imgs = self.frames
-            self.idx = 0
+            self.frame_index = 0
             self.loop()
         
     def loop(self):
@@ -64,8 +64,8 @@ class GIFPlayer:
             return
         
         # loops the current gif that were selected
-        self.label.config(image=self.frames[self.idx])
-        self.idx = (self.idx + 1) % len(self.frames)
+        self.label.config(image=self.frames[self.frame_index])
+        self.frame_index = (self.frame_index + 1) % len(self.frames)
         self.job = self.root.after(50, self.loop)
         
     def play(self, state):

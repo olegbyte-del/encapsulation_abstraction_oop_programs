@@ -44,11 +44,11 @@ class CarControllerGUI:
         self.screen.pack(pady=25)
         
         # Button for Gas and brake side by side
-        button_frame = tk.Frame(self.root, bg="#2A4D6F")
+        button_frame = tk.Frame(self.root, bg="#404040")
         button_frame.pack(pady=20)
         
         self.gas_button = tk.Button(
-            self.root, 
+            button_frame, 
             text="GAS",
             font=("Arial", 12, "bold"),
             width=25,
@@ -61,7 +61,7 @@ class CarControllerGUI:
         )
         self.gas_button.pack(pady=15)
 
-        brake_button = tk.Button(self.root,
+        brake_button = tk.Button(button_frame,
             text = "Brake",
             font=("Arial", 12, "bold"),
             width=25,
