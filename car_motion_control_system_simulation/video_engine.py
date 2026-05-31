@@ -5,7 +5,7 @@ import os
 import threading
 
 class GIFPlayer:
-    """IHandles loading nad looping GIF"""
+    """handles loading and looping GIF"""
     
     #initializing class for video playback
     def __init__(self, root):

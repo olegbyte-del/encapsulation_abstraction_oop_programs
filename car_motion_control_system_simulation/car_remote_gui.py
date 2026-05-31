@@ -5,9 +5,10 @@ from car_status import Car
 from video_engine import GIFPlayer
 
 class CarControllerGUI:
+    """Gui program panel"""
 
     def __init__(self, root):
-
+        """Structure of the GUI"""
         # Structure of the GUI
         self.root = root
         self.root.title("Car Controller")
@@ -90,6 +91,7 @@ class CarControllerGUI:
         self.update_car_display()
         
     def update_car_display(self):
+        """monitor realtime speed of the car and changes the gif"""
         speed = self.car.get_speed()
         
         if speed == 0:
