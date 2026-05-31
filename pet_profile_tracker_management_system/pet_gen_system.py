@@ -9,7 +9,7 @@ class PetAppGui:
     def __init__(self, root):
         self.root = root 
         self.root.title("Pet ID Profile Generator")
-        self.root.geometry("365x425")
+        self.root.geometry("740x450")
         self.root.configure(bg="#DBA674")
         
         self.image = None
@@ -22,7 +22,7 @@ class PetAppGui:
         try:
             window_icon_img = Image.open(LOGO_IMAGE_FILE)
             self.window_icon_photo = ImageTk.PhotoImage(window_icon_img)
-            self.root.iconphoto(False, self.window_icon_photo)
+            self.root.iconphoto(True, self.window_icon_photo)
         except Exception:
             pass
         
@@ -37,8 +37,8 @@ class PetAppGui:
         input_frame.place(x=20, y=20, width=320, height=400)
         
         tk.Label(input_frame, text = "Pet Name:", bg = "#FFFFFF").pack(anchor="w")
-        self.pet_name = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
-        self.pet_name.pack(fill="x", pady=(0,10))
+        self.pet_name_entry = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
+        self.pet_name_entry.pack(fill="x", pady=(0,10))
         
         tk.Label(input_frame, text="Animal Type:", bg="#FFFFFF").pack(anchor="w")
         self.entry_type = tk.Entry(input_frame, font=("Cosmic Sans MS", 11))
@@ -97,9 +97,9 @@ class PetAppGui:
             image = Image.open(check_image)
             image = image.resize((110, 130), Image.Resampling.LANCZOS)
             self.pet_photo = ImageTk.PhotoImage(image)
-            self.photo_label_config(image=self.pet_photo, text="")
+            self.photo_label.config(image=self.pet_photo, text="")
         except FileNotFoundError:
-            self.photo_label_config(text="Image Not Found", font=("Cosmic Sans MS", 10))
+            self.photo_label.config(text="Image Not Found", font=("Cosmic Sans MS", 10))
         except Exception as e:
             messagebox.showwarning("Image Error!", "Failed to load the photo.")
         
