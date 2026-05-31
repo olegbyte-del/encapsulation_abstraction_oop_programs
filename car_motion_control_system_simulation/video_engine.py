@@ -26,25 +26,27 @@ class GIFPlayer:
         base = os.path.dirname(os.path.abspath(__file__))
         
         # Icon logo for the video
-        self.logo_img = tk.PhotoImage(file=os.path.join(base, "remote.png"))
+        self.logo_img = tk.PhotoImage(file=os.path.join(base, "controller_logo.png"))
         self.root.iconphoto(False, self.logo_img)
         
         # setting exact paths for gif files
         self.paths = {
-            1: os.path.join(base, "low.gif"),
-            2: os.path.join(base, "medium.gif"),
-            3: os.path.join(base, "fast.gif"),
-            "off": os.path.join(base, "power_off.gif")
+            1: os.path.join(base, "car_not_moving.gif"),
+            2: os.path.join(base, "car_moving.gif"),
+            3: os.path.join(base, "car_fast.gif"),
+            4: os.path.join(base, "flying.gif"),
+            "brake": os.path.join(base, "car_brake.gif")
         }
 
     def load_gif(self, path): 
         """Extract all individual from the specified GIF file path"""
 
-        if self.job:
-            self.root.after_cancel(self.job)
-            self.job = None
-            
-        temp_frames = []
+        if path != self._loading_path:
+            return
+        
+        if temp_frames is None:
+            temp_frames = []
+
         file_index = 0
         self.idx = 0
         
@@ -52,15 +54,15 @@ class GIFPlayer:
             try:
                 frame = tk.PhotoImage(file=path, format = f"gif -index {file_index}")
                 temp_frames.append(frame)
-                file_index += 1
+                self.root.after(0, lambda: self.load_gif(path, file_index + 1, temp_frames))
             except:
-                break
-        
-        self.frames =temp_frames
-        self.label.imgs = self.frames
+                self.frames = temp_frames
+                self.label.imgs = self.frames
+                self.idx = 0
+                self.loop()
         
     def loop(self):
-        """Cycle through the GIF continously"""
+        """Play gif based on car speed"""
         if not self.frames:
             return
         
@@ -70,10 +72,13 @@ class GIFPlayer:
         self.job = self.root.after(50, self.loop)
         
     def play(self, state):
-        """Play gif based on fan speed"""
+        """Play gif based on car speed"""
         path = self.paths.get(state)
         if path:
-            def load_then_play():
-                self.load_gif(path)
-                self.root.after(0, self.loop)
-            threading.Thread(target=load_then_play, daemon=True).start()
+            if self.job:
+                self.root.after_cancel(self.job)
+                self.job = None
+            self.frames = []
+            self._loading_path = path
+            self.load_gif(path)
+        
